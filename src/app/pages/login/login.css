@@ -1,0 +1,64 @@
+.login-container {
+  max-width: 450px; /* Ancho un poco más grande */
+  margin: 100px auto;
+  padding: 30px; /* Más espacio interno */
+  border: 2px solid #0056b3; /* Borde de color */
+  border-radius: 12px; /* Esquinas más redondeadas */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más fuerte */
+  background-color: #e6f7ff; /* Fondo azul claro */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+
+h2 {
+  color: #004080; /* Azul oscuro para el título */
+  margin-bottom: 25px;
+  font-size: 24px;
+}
+
+.form-group {
+  margin-bottom: 20px; /* Más espacio entre los campos */
+  text-align: left;
+}
+
+label {
+  display: block;
+  font-weight: 600; /* Fuente más gruesa */
+  margin-bottom: 8px;
+  color: #333;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #007bff; /* Borde de color azul */
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 15px; /* Botón más grande */
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px); /* Efecto al pasar el mouse */
+}
+
+.error-message {
+  margin-top: 20px;
+  color: #c0392b; /* Rojo más oscuro */
+  background-color: #fcebeb;
+  border: 1px solid #d9534f;
+  padding: 12px;
+  border-radius: 6px;
+}
