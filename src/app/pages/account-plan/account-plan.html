@@ -1,0 +1,20 @@
+<h2>Plan de Cuentas</h2>
+
+<div class="account-list">
+  <table>
+    <thead>
+    <tr>
+      <th>Código</th>
+      <th>Nombre</th>
+      <th>Tipo</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let account of accounts">
+      <td>{{ account.code }}</td>
+      <td>{{ account.name }}</td>
+      <td>{{ account.type }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

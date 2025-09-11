@@ -1,0 +1,42 @@
+<h2>Gestión de Usuarios</h2>
+
+<div class="user-list">
+  <h3>Usuarios existentes</h3>
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre de Usuario</th>
+      <th>Roles</th>
+      <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.id }}</td>
+      <td>{{ user.username }}</td>
+      <td>{{ user.roles.join(', ') }}</td>
+      <td>
+        <button (click)="deleteUser(user.id)">Eliminar</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<hr>
+
+<div class="add-user">
+  <h3>Agregar nuevo usuario</h3>
+  <form (ngSubmit)="addUser()">
+    <div class="form-group">
+      <label for="username">Nombre de Usuario:</label>
+      <input type="text" id="username" [(ngModel)]="newUser.username" name="username" required>
+    </div>
+    <div class="form-group">
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" [(ngModel)]="newUser.password" name="password" required>
+    </div>
+    <button type="submit">Agregar Usuario</button>
+  </form>
+</div>
