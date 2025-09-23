@@ -1,9 +1,9 @@
 <nav>
   <ul>
     <li><a [routerLink]="['/dashboard']">Dashboard</a></li>
-    <li><a [routerLink]="['/account-plan']">Plan de Cuentas</a></li>
-    <li *ngIf="isAdmin"><a [routerLink]="['/admin/users']">Administración de Usuarios</a></li>
-    <li *ngIf="isAdmin"><a [routerLink]="['/admin/accounts']">Administración de Cuentas</a></li>
+    <li><a [routerLink]="['/dashboard/account-plan']">Plan de Cuentas</a></li>
+    <li *ngIf="isAdmin"><a [routerLink]="['/dashboard/admin/users']">Administración de Usuarios</a></li>
+    <li *ngIf="isAdmin"><a [routerLink]="['/dashboard/admin/accounts']">Administración de Cuentas</a></li>
   </ul>
 </nav>
 
