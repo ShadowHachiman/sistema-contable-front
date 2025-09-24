@@ -4,6 +4,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard';
 import { AccountPlanComponent } from './pages/account-plan/account-plan';
 import { UserManagementComponent } from './pages/admin/user-management/user-management';
 import { AccountManagementComponent } from './pages/admin/account-management/account-management';
+import { AsientosComponent } from './pages/asientos/asientos';
 import { authGuard } from './auth-guard';
 
 export const routes: Routes = [
@@ -15,7 +16,8 @@ export const routes: Routes = [
     children: [
       { path: 'account-plan', component: AccountPlanComponent },
       { path: 'admin/users', component: UserManagementComponent },
-      { path: 'admin/accounts', component: AccountManagementComponent }
+      { path: 'admin/accounts', component: AccountManagementComponent },
+      { path: 'asientos', component: AsientosComponent }
     ]
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },

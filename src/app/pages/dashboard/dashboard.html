@@ -2,9 +2,15 @@
   <ul>
     <li><a [routerLink]="['/dashboard']">Dashboard</a></li>
     <li><a [routerLink]="['/dashboard/account-plan']">Plan de Cuentas</a></li>
-    <li *ngIf="isAdmin"><a [routerLink]="['/dashboard/admin/users']">Administración de Usuarios</a></li>
-    <li *ngIf="isAdmin"><a [routerLink]="['/dashboard/admin/accounts']">Administración de Cuentas</a></li>
+    <li><a [routerLink]="['/dashboard/asientos']">Asientos</a></li>
   </ul>
+  <!-- Usando la nueva sintaxis @if para evitar el warning -->
+  @if (isAdmin) {
+    <ul>
+      <li><a [routerLink]="['/dashboard/admin/users']">Administración de Usuarios</a></li>
+      <li><a [routerLink]="['/dashboard/admin/accounts']">Administración de Cuentas</a></li>
+    </ul>
+  }
 </nav>
 
 <div class="content">

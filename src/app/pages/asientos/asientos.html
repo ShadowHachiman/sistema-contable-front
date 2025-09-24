@@ -1,0 +1,77 @@
+<div class="asientos-container">
+  <h2>Asientos</h2>
+
+  <div class="filtro-asientos">
+    <label for="fechaDesde">Fecha desde:</label>
+    <input type="date" id="fechaDesde">
+
+    <label for="fechaHasta">Fecha hasta:</label>
+    <input type="date" id="fechaHasta">
+
+    <button>Filtrar</button>
+    <button>Limpiar filtro</button>
+  </div>
+
+  <div class="tabla-asientos">
+    <table>
+      <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Nro Asiento</th>
+        <th>Descripción</th>
+      </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+  <div class="acciones-tabla">
+    <button>Imprimir</button>
+  </div>
+
+  <hr>
+
+  <div class="registro-asiento">
+    <h3>Registrar nuevo asiento</h3>
+    <form (ngSubmit)="registrarAsiento()">
+      <div class="form-group">
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" [(ngModel)]="nuevoAsiento.fecha" name="fecha" required>
+      </div>
+      <div class="form-group">
+        <label for="descripcion">Descripción:</label>
+        <input type="text" id="descripcion" [(ngModel)]="nuevoAsiento.descripcion" name="descripcion" required>
+      </div>
+
+      <h4>Partida Doble</h4>
+      <table>
+        <thead>
+        <tr>
+          <th>Cuenta</th>
+          <th>Debe</th>
+          <th>Haber</th>
+          <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let linea of nuevoAsiento.lineas; let i = index">
+          <td>
+            <select [(ngModel)]="linea.cuenta" [name]="'cuenta' + i" required>
+              <option [ngValue]="null" disabled>Selecciona una cuenta</option>
+              <option *ngFor="let cuenta of cuentas" [ngValue]="cuenta">{{ cuenta.name }}</option>
+            </select>
+          </td>
+          <td><input type="number" [(ngModel)]="linea.debe" [name]="'debe' + i"></td>
+          <td><input type="number" [(ngModel)]="linea.haber" [name]="'haber' + i"></td>
+          <td><button type="button" (click)="eliminarLinea(i)">-</button></td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="acciones-asiento">
+        <button type="button" (click)="agregarLinea()">+ Añadir línea</button>
+      </div>
+      <button type="submit" [disabled]="!esValido()">Registrar asiento</button>
+      <p *ngIf="!esValido()">Total Debe: {{ totalDebe() }} | Total Haber: {{ totalHaber() }}</p>
+    </form>
+  </div>
+</div>
