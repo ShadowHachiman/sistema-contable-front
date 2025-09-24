@@ -1,58 +1,53 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '../../../services/auth'; // Ruta corregida
+import { HttpClientModule } from '@angular/common/http';
+import { RouterLink } from '@angular/router';
+import { UserService } from '../../../services/user'; // Importa el servicio
 
 @Component({
   selector: 'app-user-management',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, HttpClientModule, RouterLink],
   templateUrl: './user-management.html',
-  styleUrl: './user-management.css' // Corregir el nombre del archivo CSS
+  styleUrl: './user-management.css'
 })
 export class UserManagementComponent implements OnInit {
-  users: any[] = [];
-  newUser: any = { username: '', password: '', roles: [] };
 
-  constructor(private authService: AuthService) {}
+  users: any[] = [];
+  newUser: any = {
+    username: '',
+    email: '',
+    role: 'user' // Por defecto, el rol es 'user'
+  };
+
+  // Inyecta el servicio en el constructor
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
     this.getUsers();
   }
 
   getUsers(): void {
-    this.authService.getUsers().subscribe(
-      (data: any) => {
-        this.users = data;
-      },
-      (error: any) => {
-        console.error('Error al obtener usuarios:', error);
-      }
-    );
+    this.userService.getUsers().subscribe(data => {
+      this.users = data;
+    });
   }
 
   addUser(): void {
-    this.authService.addUser(this.newUser).subscribe(
-      (response: any) => {
-        console.log('Usuario agregado exitosamente:', response);
-        this.getUsers();
-        this.newUser = { username: '', password: '', roles: [] };
-      },
-      (error: any) => {
-        console.error('Error al agregar usuario:', error);
-      }
-    );
+    if (this.newUser.username && this.newUser.email) {
+      this.userService.addUser(this.newUser).subscribe(response => {
+        console.log('Usuario agregado:', response);
+        this.getUsers(); // Recarga la lista de usuarios
+        this.newUser = { username: '', email: '', role: 'user' }; // Limpia el formulario
+      });
+    }
   }
 
-  deleteUser(id: number): void {
-    this.authService.deleteUser(id).subscribe(
-      () => {
-        console.log('Usuario eliminado exitosamente');
-        this.getUsers();
-      },
-      (error: any) => {
-        console.error('Error al eliminar usuario:', error);
-      }
-    );
+  deleteUser(userId: number): void {
+    this.userService.deleteUser(userId).subscribe(() => {
+      console.log('Usuario eliminado');
+      this.getUsers(); // Recarga la lista de usuarios
+    });
   }
 }
